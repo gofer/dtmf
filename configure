@@ -1,0 +1,35 @@
+#!/bin/sh
+
+function usage()
+{
+	echo "Usage: $0 [-dh]" 1>&2
+	echo "-d: enable debug mode" 1>&2
+	echo "-h: display help" 1>&2
+}
+
+# getopt
+DEBUG_MODE=0
+while getopts dh OPT
+do
+	case ${OPT} in
+	d)	DEBUG_MODE=1
+		;;
+	h)	usage; exit 1
+		;;
+	*) ;;
+	esac
+done
+
+# clean Makefile
+echo -n "" > Makefile
+
+# enable debug mode?
+if [ ${DEBUG_MODE} -eq 1 ]; then
+    echo "TARGET=debug.exe"        >> Makefile
+    echo "CXXFLAGS+=-D__DEBUG__"   >> Makefile
+else
+    echo "TARGET=relase.exe"       >> Makefile
+fi
+
+# include Makefile.mk
+echo "include Makefile.mk"         >> Makefile
