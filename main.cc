@@ -72,6 +72,7 @@ int WINAPI WinMain(
 	double beepTime = 0.5, waitTime = 0.2;
 	DWORD bufSize = (DWORD)floor(wfx.nAvgBytesPerSec * beepTime);
 	
+    printf("Input [0-9A-D#\\*]+ > ");
 	while(true)
 	{
 		HWAVEOUT hwo = NULL;
@@ -86,7 +87,6 @@ int WINAPI WinMain(
 		soundInit(&hwo, &wfx);
 		
 REINPUT:
-		printf("Input [0-9A-D#\\*]+ > ");
 		char c;
 		scanf("%c", &c);
 		if(c == 'x' || c == '\n') 
