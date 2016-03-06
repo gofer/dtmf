@@ -37,15 +37,15 @@ DWORD wait(double T)
 }
 
 int WINAPI WinMain(
-    HINSTANCE hInstance,
-    HINSTANCE hPrevInstance, 
-    LPSTR lpCmdLine, 
-    int nCmdShow
+	HINSTANCE hInstance,
+	HINSTANCE hPrevInstance, 
+	LPSTR lpCmdLine, 
+	int nCmdShow
 )
 {
-    UINT woDeviceNum = waveOutGetNumDevs();
+	UINT woDeviceNum = waveOutGetNumDevs();
 #ifdef __DEBUG__
-    printf("woDeviceNum = %u\n", woDeviceNum);
+	printf("woDeviceNum = %u\n", woDeviceNum);
 #endif
    
 	/* device not found */
@@ -72,7 +72,7 @@ int WINAPI WinMain(
 	double beepTime = 0.5, waitTime = 0.2;
 	DWORD bufSize = (DWORD)floor(wfx.nAvgBytesPerSec * beepTime);
 	
-    printf("Input [0-9A-D#\\*]+ > ");
+	printf("Input [0-9A-D#\\*]+ > ");
 	while(true)
 	{
 		HWAVEOUT hwo = NULL;
@@ -113,6 +113,6 @@ REINPUT:
 		wait(waitTime);
 	}
 	
-    return 0;
+	return 0;
 }
 
