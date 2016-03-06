@@ -67,21 +67,21 @@ static LPCSTR SupportFunctionsString[] = {
 
 DWORD waveOutGetDeviceInfo(DWORD woDeviceNum)
 {
-    for(UINT uDeviceID=0; uDeviceID<woDeviceNum; ++uDeviceID)
-    {
-        LPWAVEOUTCAPS pwoc = new WAVEOUTCAPS();
-        
-        MMRESULT mmResult = waveOutGetDevCaps(uDeviceID, pwoc, sizeof(WAVEOUTCAPS));
-        if(mmResult != MMSYSERR_NOERROR)
-        {
-            fprintf(stderr, "Cannot load device info. (id=%u, errno=%u)\n", uDeviceID, mmResult);
-            continue;
-        }
-        
-        printf("Device name: %s\n", pwoc->szPname);
+	for(UINT uDeviceID=0; uDeviceID<woDeviceNum; ++uDeviceID)
+	{
+		LPWAVEOUTCAPS pwoc = new WAVEOUTCAPS();
+		
+		MMRESULT mmResult = waveOutGetDevCaps(uDeviceID, pwoc, sizeof(WAVEOUTCAPS));
+		if(mmResult != MMSYSERR_NOERROR)
+		{
+			fprintf(stderr, "Cannot load device info. (id=%u, errno=%u)\n", uDeviceID, mmResult);
+			continue;
+		}
+        	
+		printf("Device name: %s\n", pwoc->szPname);
 		printf("Manufacturer identifier: 0x%08X\n", pwoc->wMid);
 		printf("Product identifier: 0x%08X\n", pwoc->wPid);
-        printf("Channels: %s\n", ((pwoc->wChannels == 1) ? "Mono(1)" : "Streo(2)"));
+		printf("Channels: %s\n", ((pwoc->wChannels == 1) ? "Mono(1)" : "Streo(2)"));
 		
 		printf("Support formats: 0x%08X\n", pwoc->dwFormats);
 		for(UINT i=0; i<20; ++i)
@@ -101,8 +101,8 @@ DWORD waveOutGetDeviceInfo(DWORD woDeviceNum)
 			}
 		}
 		
-        delete pwoc;
-    }
+		delete pwoc;
+	}
 	
 	return 0;
 }
